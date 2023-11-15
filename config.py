@@ -1,5 +1,4 @@
 import os
-import currencyapicom
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, Session
@@ -9,8 +8,6 @@ from fastapi.templating import Jinja2Templates
 load_dotenv()
 
 CURRENCY_API_KEY = os.environ.get('CURRENCY_API_KEY')
-currency_client = currencyapicom.Client(api_key=CURRENCY_API_KEY)
-
 
 DB_HOST = os.environ.get('DB_HOST')
 DB_DATABASE = os.environ.get('DB_DATABASE')
