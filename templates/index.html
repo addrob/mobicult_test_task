@@ -1,0 +1,25 @@
+<html>
+<head>
+
+</head>
+<body>
+Курс евро: {{ exchange_rate.eur }}<br>
+Курс доллара: {{ exchange_rate.usd }}<br>
+
+
+<button onclick="location.href='http://localhost:8000/rub_exchange_rate/{{ dates.day_before_yesterday }}'" type="button">
+    Позавчера
+</button>
+
+<button onclick="location.href='http://localhost:8000/rub_exchange_rate/{{ dates.yesterday }}'" type="button">
+    Вчера
+</button>
+
+<button onclick="location.href='http://localhost:8000/rub_exchange_rate/{{ dates.today }}'" type="button">
+    Сегодня
+</button>
+
+
+
+</body>
+</html>
