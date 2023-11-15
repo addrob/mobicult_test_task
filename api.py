@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Path, Request, Depends
 import datetime
 from fastapi.responses import HTMLResponse
-from config import session, currency_client, templates
+from config import session, templates
 from crud import get_exchange_rate_from_db, create_exchange_rate
 
 router = APIRouter()

@@ -36,8 +36,8 @@ def get_exchange_rate_from_api(date: datetime.date):
         response = requests.get(f'{BASE_URL}/latest',
                                 params=params,
                                 headers=headers)
-        eur_exchange_rate = 1 / response.json()['rates']['EUR']
-        usd_exchange_rate = 1 / response.json()['rates']['USD']
+        eur_exchange_rate = round(1 / response.json()['rates']['EUR'], 2)
+        usd_exchange_rate = round(1 / response.json()['rates']['USD'], 2)
 
         return RubCurrencyExchangeRate(date=date,
                                        eur=eur_exchange_rate,
@@ -47,8 +47,8 @@ def get_exchange_rate_from_api(date: datetime.date):
     response = requests.get(f'{BASE_URL}/{date}',
                             params=params,
                             headers=headers)
-    eur_exchange_rate = 1 / response.json()['rates']['EUR']
-    usd_exchange_rate = 1 / response.json()['rates']['USD']
+    eur_exchange_rate = round(1 / response.json()['rates']['EUR'], 2)
+    usd_exchange_rate = round(1 / response.json()['rates']['USD'], 2)
 
     return RubCurrencyExchangeRate(date=date,
                                    eur=eur_exchange_rate,

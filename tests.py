@@ -19,10 +19,7 @@ def test_get_exchange_rate_from_db():
 
 @pytest.fixture()
 def exchange_rate(request):
-    if request is None:
-        date = datetime.date.today()
-    else:
-        date = request.param
+    date = request.param
     params = {'base': 'RUB',
               'symbols': 'EUR, USD'}
     resp = requests.get(f'https://api.apilayer.com/exchangerates_data/{date}',
@@ -31,10 +28,11 @@ def exchange_rate(request):
                             "apikey": CURRENCY_API_KEY
                         })
     return RubCurrencyExchangeRate(date=date,
-                                   eur=1 / resp.json()['rates']['EUR'],
-                                   usd=1 / resp.json()['rates']['USD'])
+                                   eur=round(1 / resp.json()['rates']['EUR'], 2),
+                                   usd=round(1 / resp.json()['rates']['USD'], 2))
 
 
+@pytest.mark.parametrize('exchange_rate', [datetime.date.today()], indirect=True)
 def test_exchange_rate_from_api(exchange_rate):
     date = datetime.date.today()
     result = get_exchange_rate_from_api(date=date)
